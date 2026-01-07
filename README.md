@@ -1,4 +1,1 @@
-a toy memcached implementation implementation that follows the single listener-thread, multiple worker(via the fd handoff) threads model to support concurrent cache access for a large number of users 
-A very basic scheduler is responsible for fd handoff between the listener thread and worker threads
-Each worker thread runs an epoll based event loop, so that many clients can be handled concurrently without per-connection threads.
-
+A C++ toy memcached-style implementation that follows a single listener (acceptor) thread and multiple worker threads model to support concurrent access for a large number of clients. A very basic scheduler assigns newly accepted client socket file descriptors from the listener to worker threads via FD handoff. Each worker thread runs its own epoll-based event loop, allowing many client connections to be handled concurrently without creating a thread per connection
